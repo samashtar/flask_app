@@ -4,11 +4,12 @@
 <h3>Test your images to make sure they work</h3>
 
 <form
+  id="upload-form"
   method="POST"
   enctype="multipart/form-data"
   action="{{ url_for('upload') }}"
 >
-  <input type="file" name="photo" />
+  <input type="file" name="photo" accept="image/*" />
   <input type="submit" />
 </form>
 
