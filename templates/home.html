@@ -2,7 +2,14 @@
 
 <h1>Hello Mr. Acme</h1>
 <h3>Test your images to make sure they work</h3>
-<button>Choose file</button>
-<button>Submit</button>
+
+<form
+  method="POST"
+  enctype="multipart/form-data"
+  action="{{ url_for('upload') }}"
+>
+  <input type="file" name="photo" />
+  <input type="submit" />
+</form>
 
 {% endblock %}
