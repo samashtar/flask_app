@@ -1,8 +1,8 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 
-app = Flask(__name__, static_folder="images")
-
+app = Flask(__name__)
+# , static_folder="images"
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
@@ -26,10 +26,9 @@ def upload():
     return render_template('photo.html', image=filename)
 
 
-# @app.route('/photo')
-# def show():
-#     full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'shovon.jpg')
-#     return render_template("home.html", user_image=full_filename)
+@app.route('/img/<filename>')
+def send_image(filename):
+    return send_from_directory("images", filename)
 
 
 if __name__ == '__main__':
