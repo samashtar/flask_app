@@ -1,7 +1,7 @@
 import os
 from flask import Flask, render_template, request
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="images")
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
@@ -14,7 +14,6 @@ def index():
 @app.route('/upload', methods=['POST'])
 def upload():
     target = os.path.join(APP_ROOT, 'images/')
-    print(target)
 
     if not os.path.isdir(target):
         os.mkdir(target)
@@ -23,7 +22,8 @@ def upload():
         filename = file.filename
         destination = '/'.join([target, filename])
         file.save(destination)
-        return render_template('home.html')
+
+    return render_template('photo.html', image=filename)
 
 
 # @app.route('/photo')
