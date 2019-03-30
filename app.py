@@ -2,7 +2,6 @@ import os
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 
 app = Flask(__name__)
-# , static_folder="images"
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
