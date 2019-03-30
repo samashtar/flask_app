@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, redirect, url_for
 
 app = Flask(__name__)
 # , static_folder="images"
@@ -23,7 +23,7 @@ def upload():
         destination = '/'.join([target, filename])
         file.save(destination)
 
-    return render_template('photo.html', image=filename)
+    return redirect(url_for('send_image', filename=filename))
 
 
 @app.route('/img/<filename>')
