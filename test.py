@@ -11,12 +11,6 @@ from app import app
 
 class TestConfig(unittest.TestCase):
 
-       # def setUp(self):
-    #     pass
-
-    # def tearDown(self):
-    #     pass
-
     def setUp(self):
         self.app = app.test_client()
         self.app.testing = True
