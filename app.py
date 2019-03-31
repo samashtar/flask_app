@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request, send_from_directory, redirect, url_for
+from os import environ
 
 app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -31,4 +32,4 @@ def send_image(filename):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(debug=False, port=environ.get("PORT", 5000), processes=2)
