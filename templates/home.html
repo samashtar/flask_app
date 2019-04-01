@@ -13,12 +13,10 @@
   action="{{ url_for('upload') }}"
 >
 <div class="custom-file">
+    <label class="custom-file-label" for="file-upload" id="file-name">Upload an Image</label>
     <input type="file" class="custom-file-input" name="photo" accept="image/*" id="file-upload">
-    <label class="custom-file-label" for="customFile">Choose file</label>
   </div>
-  <input type="submit" class="md-4"/>
-
-  <!-- <input type="file" name="photo" accept="image/*" /> -->
+  <input type="submit" id="submit-button"/>
 </form>
 
 

@@ -1,32 +1,37 @@
 window.addEventListener("DOMContentLoaded", () => {
+  checkFileName();
   document
     .getElementById("file-upload")
-    .addEventListener("change", getFileName);
+    .addEventListener("change", updateFileName);
+
+  document
+    .getElementById("submit-button")
+    .addEventListener("click", submitEmpty);
 });
 
-function readFileContent(file) {
-  debugger;
-  const reader = new FileReader();
-  return new Promise((resolve, reject) => {
-    reader.onload = event => resolve(event.target.result);
-    reader.onerror = error => reject(error);
-    reader.readAsText(file);
-  });
-}
-
-function getFileName(event) {
-  debugger;
+//updates input label
+function updateFileName(event) {
   const input = event.target;
-  if ("file" in input && input.files.length > 0) {
-    placeFileContent(document.getElementById("content-target"), input.files[0]);
+  if ("files" in input && input.files.length > 0) {
+    const fileName = document.getElementById("file-name");
+    fileName.innerText = input.files[0].name;
   }
 }
 
-function placeFileContent(target, file) {
-  debugger;
-  readFileContent(file)
-    .then(content => {
-      target.value = content;
-    })
-    .catch(error => console.log(error));
+// stops empty submits
+function submitEmpty(event) {
+  const fileName = document.getElementById("file-name");
+  if (fileName.innerText === "Upload an Image") {
+    event.preventDefault();
+    alert("Please upload an image first");
+  }
+}
+
+//checks for existing input name if the user goes back
+function checkFileName() {
+  const fileName = document.getElementById("file-name");
+  const fileInput = document.getElementById("file-upload");
+  if (fileInput.value !== "") {
+    fileName.innerText = fileInput.value.replace(/^C:\\fakepath\\/i, "");
+  }
 }
