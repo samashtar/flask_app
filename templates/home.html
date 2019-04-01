@@ -1,16 +1,25 @@
 {%extends 'layout.html'%} {% block body %}
 
-<h1>Hello Mr. Acme</h1>
-<h3>Test your images to make sure they work</h3>
+<div class="jumbotron text-center">
+  <h1>Hello Mr. Acme</h1>
+<p class="lead">Test your images to make sure they work</h3>
+</div>
 
 <form
+  class="text-center"
   id="upload-form"
   method="POST"
   enctype="multipart/form-data"
   action="{{ url_for('upload') }}"
 >
-  <input type="file" name="photo" accept="image/*" />
-  <input type="submit" />
+<div class="custom-file">
+    <input type="file" class="custom-file-input" name="photo" accept="image/*" id="file-upload">
+    <label class="custom-file-label" for="customFile">Choose file</label>
+  </div>
+  <input type="submit" class="md-4"/>
+
+  <!-- <input type="file" name="photo" accept="image/*" /> -->
 </form>
+
 
 {% endblock %}
